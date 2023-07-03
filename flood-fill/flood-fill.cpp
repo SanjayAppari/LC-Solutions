@@ -6,24 +6,35 @@ public:
         return 0;
     }
 
-    void dfs(int i,int j,vector<vector<int>>& image,vector<vector<int>>& v,int c,int color){
-            cout<<image[i][j]<<" "<<c;
-        if(v[i][j]==0 && image[i][j]==c){
-            v[i][j]=1;
-            image[i][j]=color;
-            int n=image.size(),m=image[0].size();
-            if(check(i-1,j,n,m)) dfs(i-1,j,image,v,c,color);
-            if(check(i,j-1,n,m)) dfs(i,j-1,image,v,c,color);
-            if(check(i,j+1,n,m)) dfs(i,j+1,image,v,c,color);
-            if(check(i+1,j,n,m)) dfs(i+1,j,image,v,c,color);
+    void dfs(int i,int j,int n,int m,vector<vector<int>>& image,vector<vector<int>>& v,int color,int k){
+        if(check(i,j-1,n,m) && v[i][j-1]==0 && image[i][j-1]==k){
+            image[i][j-1]=color;
+            v[i][j-1]=1;
+            dfs(i,j-1,n,m,image,v,color,k);
+        }
+        if(check(i,j+1,n,m) && v[i][j+1]==0 && image[i][j+1]==k){
+            image[i][j+1]=color;
+            v[i][j+1]=1;
+            dfs(i,j+1,n,m,image,v,color,k);
+        }
+        if(check(i-1,j,n,m) && v[i-1][j]==0 && image[i-1][j]==k){
+            image[i-1][j]=color;
+            v[i-1][j]=1;
+            dfs(i-1,j,n,m,image,v,color,k);
+        }
+       if(check(i+1,j,n,m) && v[i+1][j]==0 && image[i+1][j]==k){
+            image[i+1][j]=color;
+            v[i+1][j]=1;
+            dfs(i+1,j,n,m,image,v,color,k);
         }
     }
 
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
-        int i,j,n=image.size(),m=image[0].size();
+        int n=image.size(),m=image[0].size(),i,j;
         vector<vector<int>>v(n,vector<int>(m,0));
-        int c=image[sr][sc];
-        dfs(sr,sc,image,v,c,color);
+        int k=image[sr][sc];
+        image[sr][sc]=color;
+        dfs(sr,sc,n,m,image,v,color,k);
         return image;
     }
 };
