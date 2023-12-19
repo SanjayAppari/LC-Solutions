@@ -7,6 +7,11 @@ public:
     }
 
     vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
+
+        ios::sync_with_stdio(0);
+        cin.tie(0);
+        // cout.ti
+
         int i,j,n=img.size(),m=img[0].size();
         vector<vector<int>>ans(n,vector<int>(m));
         for(i=0;i<n;i++){
