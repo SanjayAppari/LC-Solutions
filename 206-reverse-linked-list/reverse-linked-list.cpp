@@ -20,5 +20,6 @@ public:
             head=next;
         }
         return d;
+        
     }
 };
