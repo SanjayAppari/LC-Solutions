@@ -27,15 +27,12 @@ public:
             int r=v[0]%2;
             if(c==0 && r!=1) return 0;
             if(c==1 && r!=0) return 0;
-            cout<<v[0]<<" ";
             for(i=1;i<n;i++){
-                cout<<v[i]<<" ";
                 if(v[i]%2 != r) return 0;
                 if(c==0 && v[i]<=v[i-1]) return 0;
                 if(c==1 && v[i]>=v[i-1]) return 0;
             }
             c=!c;
-            cout<<endl;
         }
         return 1;
     }
